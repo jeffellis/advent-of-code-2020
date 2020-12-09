@@ -2,7 +2,7 @@
 
 const readlines = require('n-readlines');
 
-const lineReader = new readlines('./input.txt');
+const lineReader = new readlines('./input1.txt');
 
 const main = () => {
     let buffer;
