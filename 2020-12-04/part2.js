@@ -34,9 +34,18 @@ const parseLine = (line, passport) => {
     return passport;
 }
 
+// byr (Birth Year) - four digits; at least 1920 and at most 2002.
 const byr = (field) => field >= 1920 && field <= 2002;
+
+// iyr (Issue Year) - four digits; at least 2010 and at most 2020.
 const iyr = (field) => field >= 2010 && field <= 2020;
+
+// eyr (Expiration Year) - four digits; at least 2020 and at most 2030.
 const eyr = (field) => field >= 2020 && field <= 2030;
+
+// hgt (Height) - a number followed by either cm or in:
+// If cm, the number must be at least 150 and at most 193.
+// If in, the number must be at least 59 and at most 76.
 const hgt = (field) => {
     let matches = field.match(/(\d\d\d)cm/);
     if (matches) {
@@ -52,10 +61,16 @@ const hgt = (field) => {
     
     return false;
 };
+
+// hcl (Hair Color) - a # followed by exactly six characters 0-9 or a-f.
 const hcl = (field) => {
     return /\#[0-9|a-f][0-9|a-f][0-9|a-f][0-9|a-f][0-9|a-f][0-9|a-f]$/.test(field);
 }
+
+// ecl (Eye Color) - exactly one of: amb blu brn gry grn hzl oth.
 const ecl = (field) => /^(amb|blu|brn|gry|grn|hzl|oth)$/.test(field);
+
+// pid (Passport ID) - a nine-digit number, including leading zeroes.
 const pid = (field) => /^\d\d\d\d\d\d\d\d\d$/.test(field);
 
 const REQUIRED_FIELDS = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid' /*, 'cid' */];
